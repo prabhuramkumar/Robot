@@ -1,7 +1,7 @@
-export function place(coordinates) {
+export function place(placeValues) {
     return {
         type: 'PLACE',
-        coordinates
+        placeValues
     };
 }
 
@@ -21,5 +21,11 @@ export function rotate(direction) {
     return {
         type: 'ROTATE',
         direction
+    };
+}
+
+export function error() {
+    return {
+        type: 'ERROR'
     };
 }
