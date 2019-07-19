@@ -1,0 +1,22 @@
+{
+  "name": "robot",
+  "version": "1.0.0",
+  "description": "robot on a table",
+  "main": "player.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prabhuramkumar/Robot.git"
+  },
+  "author": "Prabhu Ramkumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prabhuramkumar/Robot/issues"
+  },
+  "homepage": "https://github.com/prabhuramkumar/Robot#readme",
+  "dependencies": {
+    "redux": "^4.0.4"
+  }
+}
