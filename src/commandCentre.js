@@ -1,28 +1,58 @@
 import {place, rotate, move, report, error} from './actionCentre.js';
-
+let placed;
 
 //Redirect command to actions
-export default function handleCommand(command){
-    const commandValues = command.toUpperCase().split(' ');
-    const commandName = commandValues[0];
+export default function receiveCommand(lineReader, boundActions) {
+	lineReader.on('line', function (line) {
+	  	console.log('Line from:', line);
+	  	const decoded = decodeCommand(line, boundActions);
+	  	if(!decoded) 
+  			lineReader.close()
+	});
+}
+
+function decodeCommand(command, boundActions) {
+	const commandValues = command.toUpperCase().split(' ');
+	const commandName = commandValues[0];
+	if(!placed) {
+		placed = commandName === 'PLACE';
+	}
+
+	if(placed) {
+		handleCommand(commandName, commandValues, boundActions);
+		return true;
+	}else{
+		console.log("Invalid command");
+		return false;
+	}
+}
+
+
+function handleCommand(commandName, commandValues, boundActions){
     switch (commandName) {
 	    case 'PLACE': 
-	    	return place(commandValues);
+	    	 boundActions.place(commandValues);
+	    	 break;
 	    
 	    case 'LEFT':
-			return rotate(commandName);
+			 boundActions.rotate(commandName);
+			 break;
 		
 		case 'RIGHT': 
-			return rotate(commandName);
+			 boundActions.rotate(commandName);
+			 break;
 		
 		case 'MOVE':
-			return move();
+			 boundActions.move();
+			 break;
 		
 		case 'REPORT':
-			return report();
+			 boundActions.report();
+			 break;
 
 		default:
-			return error(message);
+			 boundActions.error('OOPS! Wrong command');
+			 break;
 		
 	}
 }

@@ -15,7 +15,7 @@ export function placeRobot(state, placeValues) {
 export function moveRobot(state) {
     const newPosition = navigator(state);
     if(!newPosition) {
-    	let newError = {errorOccured: true, errorMessage: "falling off"};
+    	let newError = {errorOccured: true, errorMessage: "Oh! falling off"};
     	return Object.assign({}, state, {error: newError});
     }
     return Object.assign({}, state, {position: newPosition});
@@ -27,7 +27,6 @@ export function rotateRobot(state, direction) {
 }
 
 export function reportPosition(state, placeValues) {
-	console.log("state", state);
 	if(state.error.errorOccured){
     	console.log("Error", state.error.errorMessage);
 	}else{
