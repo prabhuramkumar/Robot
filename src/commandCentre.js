@@ -2,18 +2,9 @@ import {place, rotate, move, report, error} from './actionCentre.js';
 import {tableSize} from './robotConfig';
 let placed;
 
-//Redirect command to actions
-export default function receiveCommand(lineReader, boundActions) {
-	lineReader.on('line', function (line) {
-	  	console.log('Command:', line);
-	  	const decoded = decodeCommand(line, boundActions);
-	  	if(!decoded) 
-  			lineReader.close()
-	});
-}
 
 //Decode command based on config
-function decodeCommand(command, boundActions) {
+export default function decodeCommand(command, boundActions) {
 	const [commandName, x, y, facing] = command.toUpperCase().split(' ');
 	let positionValues = {x,y,facing};
 
