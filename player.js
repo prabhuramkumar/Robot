@@ -12,8 +12,12 @@ function readCommand() {
 	  console.log(line);
 	  const commandExecuted = decodeCommand(line, boundActions);
 
-	  if(!commandExecuted)
+	  if(!commandExecuted){
+	  	boundActions.error("Invalid Command, verify and run again.");
+		boundActions.report();
 		return false;
+	  }
+		
 	});
 }
 

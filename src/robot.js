@@ -32,9 +32,9 @@ export function rotateRobot(state, direction) {
 // Report if there is no error otherwise report error.
 export function reportPosition(state, placeValues) {
 	if(state.error.errorOccured){
-    	console.log("Error", state.error.errorMessage);
+    	console.log("Error:", state.error.errorMessage);
 	}else{
-		console.log("Position", state.position.x + " " + state.position.y + " " + state.facing);
+		console.log("Position:", state.position.x + " " + state.position.y + " " + state.facing);
 	}
 }
 

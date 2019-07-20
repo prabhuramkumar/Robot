@@ -16,16 +16,15 @@ export default function decodeCommand(command, boundActions) {
 		handleCommand(commandName, positionValues, boundActions);
 		return true;
 	}else{
-		console.log("Invalid command");
 		return false;
 	}
 }
 
 function checkInitalPlacement(positionValues){
-	if(positionValues.x<tableSize.x 
-		&& positionValues.y<tableSize.y 
-		&& positionValues.x>0 
-		&& positionValues.y>0)
+	if(positionValues.x<=tableSize.x 
+		&& positionValues.y<=tableSize.y 
+		&& positionValues.x>=0 
+		&& positionValues.y>=0)
 		return true;
 }
 
