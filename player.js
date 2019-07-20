@@ -8,7 +8,7 @@ import readline from 'readline';
 const store = robotStore();
 const boundActions = bindActionCreators(actions, store.dispatch);
 
-function sendCommand() {
+function readCommand() {
 	var lineReader = readline.createInterface({
   		input: fs.createReadStream('commands.txt')
 	});
@@ -16,4 +16,4 @@ function sendCommand() {
 	receiveCommand(lineReader, boundActions);
 }
 
-sendCommand();
+readCommand();

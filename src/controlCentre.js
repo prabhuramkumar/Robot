@@ -16,7 +16,7 @@ export default function controller(state = initialState, command) {
             return reportPosition(state);
 
         case 'ERROR':
-            return errorUpdate(state, command.errorMessage);
+            return errorUpdate(state, command.message);
     }
     return state;
 }

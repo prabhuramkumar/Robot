@@ -2,16 +2,18 @@ import compass from './utils/compass';
 import navigator from './utils/navigator';
 
 // place the robot on table
+// All validations done prior, just place it.
 export function placeRobot(state, placeValues) {
     const newPosition = {
-		x: parseInt(placeValues[1]),
-		y: parseInt(placeValues[2])
+		x: parseInt(placeValues.x),
+		y: parseInt(placeValues.y)
 	}
    
-    return Object.assign({}, state, {position:newPosition}, {facing: placeValues[3]});
+    return Object.assign({}, state, {position:newPosition}, {facing: placeValues.facing});
 }
 
-// Move the robot
+// Move robot on 5X5 table 
+// If it goes outside the border throw error.
 export function moveRobot(state) {
     const newPosition = navigator(state);
     if(!newPosition) {
@@ -21,11 +23,13 @@ export function moveRobot(state) {
     return Object.assign({}, state, {position: newPosition});
 }
 
+// Rotate robot
 export function rotateRobot(state, direction) {
 	let newFacing = compass(direction, state.facing);
 	return Object.assign({}, state, {facing: newFacing});
 }
 
+// Report if there is no error otherwise report error.
 export function reportPosition(state, placeValues) {
 	if(state.error.errorOccured){
     	console.log("Error", state.error.errorMessage);
@@ -34,6 +38,7 @@ export function reportPosition(state, placeValues) {
 	}
 }
 
+// handle error when called from anywhere and update state.
 export function errorUpdate(state, message) {
 	let newError = {errorOccured: true, errorMessage: message};
 	return Object.assign({}, state, {error: newError});
