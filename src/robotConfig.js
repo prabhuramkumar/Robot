@@ -1,7 +1,11 @@
 const initialState = {
     position: null,
     facing: null,
-    rotate: null
+    rotate: null,
+    error: {
+    	errorOccured: false,
+    	errorMessage: ''
+    }
 };
 
 const faces = {
@@ -16,4 +20,10 @@ const directions = {
 	right: "RIGHT"
 }
 
-export {initialState, faces, directions};
+const tableSize = {
+	x: 5,
+	y: 5
+}
+
+
+export {initialState, faces, directions, tableSize};

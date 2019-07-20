@@ -1,8 +1,8 @@
-import {place, rotate, move, report} from './actionCentre.js';
+import {place, rotate, move, report, error} from './actionCentre.js';
 
 
+//Redirect command to actions
 export default function handleCommand(command){
-    //Redirect command to actions
     const commandValues = command.toUpperCase().split(' ');
     const commandName = commandValues[0];
     switch (commandName) {
@@ -22,7 +22,7 @@ export default function handleCommand(command){
 			return report();
 
 		default:
-			return error();
+			return error(message);
 		
 	}
 }

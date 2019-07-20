@@ -1,7 +1,9 @@
 import {faces} from '../robotConfig';
 
+
 const compass = (direction, facing) => {
 	if(direction === 'LEFT'){
+		console.log("faces", faces);
 		switch(facing){
 			case faces.north:
 				return faces.west;

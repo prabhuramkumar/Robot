@@ -1,18 +1,22 @@
-import {placeRobot, moveRobot, rotateRobot, reportPosition} from './robot';
+import {placeRobot, moveRobot, rotateRobot, reportPosition, errorUpdate} from './robot';
 import {initialState, faces, directions} from './robotConfig';
 
-export default function controller(state = initialState, action) {
-    switch (action.type) {
+export default function controller(state = initialState, command) {
+    switch (command.type) {
         case 'PLACE':
-            return placeRobot(state, action.placeValues);
+            return placeRobot(state, command.commandValues);
+
         case 'ROTATE':
-            return rotateRobot(state, action.facing);
+            return rotateRobot(state, command.direction);
+
         case 'MOVE':
-            return moveRobot(state);
+            return moveRobot(state, command);
+
         case 'REPORT':
             return reportPosition(state);
+
         case 'ERROR':
-            return error();
+            return errorUpdate(state, command.errorMessage);
     }
     return state;
 }

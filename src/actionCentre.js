@@ -1,7 +1,7 @@
-export function place(placeValues) {
+export function place(commandValues) {
     return {
         type: 'PLACE',
-        placeValues
+        commandValues
     };
 }
 
@@ -24,8 +24,9 @@ export function rotate(direction) {
     };
 }
 
-export function error() {
+export function error(message) {
     return {
-        type: 'ERROR'
+        type: 'ERROR',
+        message
     };
 }

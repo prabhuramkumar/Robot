@@ -1,31 +1,24 @@
 import compass from './utils/compass';
+import navigator from './utils/navigator';
 
+// place the robot on table
 export function placeRobot(state, placeValues) {
-    // place the robot on table
     const newPosition = {
-    	position: {
-    		x: placeValues[1],
-    		y: placeValues[2]
-    	}
+		x: parseInt(placeValues[1]),
+		y: parseInt(placeValues[2])
 	}
    
-    return Object.assign({}, state, newPosition, {facing: placeValues[3]});
+    return Object.assign({}, state, {position:newPosition}, {facing: placeValues[3]});
 }
 
+// Move the robot
 export function moveRobot(state) {
-    // Move the robot
-    let position = state.position;
-	switch (state.facing) {
-		case 'NORTH':
-		  	return position.y+1;
-		case 'SOUTH':
-		  	return position.y+1;
-		case 'EAST':
-			return position.x+1;
-		case 'WEST':
-			return position.x+1;
-	}
-    return Object.assign({}, state, position);
+    const newPosition = navigator(state);
+    if(!newPosition) {
+    	let newError = {errorOccured: true, errorMessage: "falling off"};
+    	return Object.assign({}, state, {error: newError});
+    }
+    return Object.assign({}, state, {position: newPosition});
 }
 
 export function rotateRobot(state, direction) {
@@ -35,9 +28,14 @@ export function rotateRobot(state, direction) {
 
 export function reportPosition(state, placeValues) {
 	console.log("state", state);
-    console.log("Position", state.position.x + " " + state.position.y + " " + state.facing);
+	if(state.error.errorOccured){
+    	console.log("Error", state.error.errorMessage);
+	}else{
+		console.log("Position", state.position.x + " " + state.position.y + " " + state.facing);
+	}
 }
 
-export function error(state) {
-    console.log("OOPS! Wrong command");
+export function errorUpdate(state, message) {
+	let newError = {errorOccured: true, errorMessage: message};
+	return Object.assign({}, state, {error: newError});
 }
