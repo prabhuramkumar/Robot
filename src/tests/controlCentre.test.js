@@ -1,4 +1,4 @@
-import decodeCommand from '../commandCentre';
+import controller from '../controlCentre';
 
 const initialState = {
     position: null,
@@ -15,29 +15,17 @@ let newState;
 
 describe('Reducer test - Testing initialState', () => {
   it('should return the initial state', () => {
-    // expect(controller(undefined, {})).toEqual(initialState);
+    expect(controller(undefined, {})).toEqual(initialState);
   });
 
- //  it('should add a product to the state and update total', () => {
- //  	let actions = {
- //  		type: 'ADD_TO_CART',
- //  		val: mockProducts[0]
- //  	}
- //  	newState = indexReducer(initialState, actions);
- //    expect(newState.total).toEqual(10);
-	// expect(newState.cart.length).toEqual(1);
- //  });
-
-  // it('should update quantity when same product added again and should update total', () => {
-  // 	let actions = {
-  // 		type: 'ADD_TO_CART',
-  // 		val: mockProducts[0]
-  // 	}
-  // 	newState = indexReducer(newState, actions);
-  //   expect(newState.total).toEqual(20);
-	 // expect(newState.cart.length).toEqual(1);
-	 // expect(newState.cart[0].quantity).toEqual(2);
-  // });
-
+  it('should add a product to the state and update total', () => {
+  	let actions = {
+  		type: 'PLACE',
+  		commandValues: {x: 1, y: 1, facing: 'EAST'}
+  	}
+  	newState = controller(initialState, actions);
+    expect(newState.position.x).toEqual(1);
+	expect(newState.facing).toEqual('EAST');
+  });
 
 });
