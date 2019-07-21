@@ -31,11 +31,15 @@ export function rotateRobot(state, direction) {
 
 // Report if there is no error otherwise report error.
 export function reportPosition(state, placeValues) {
+	let report;
 	if(state.error.errorOccured){
     	console.log("Error:", state.error.errorMessage);
+    	report = false;
 	}else{
 		console.log("Position:", state.position.x + " " + state.position.y + " " + state.facing);
+		report = true;
 	}
+	return Object.assign({}, state, {report});
 }
 
 // handle error when called from anywhere and update state.
