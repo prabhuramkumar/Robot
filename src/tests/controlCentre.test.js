@@ -69,11 +69,11 @@ describe('Reducer - Basic functionality testing', () => {
   it('should ERROR when there is a issue and report the error.', () => {
   	let actions = {
   		type: 'ERROR',
-  		message: 'Some error'
+  		message: 'Test error'
   	}
   	newState = controller(newState, actions);
     expect(newState.error.errorOccured).toEqual(true);
-    expect(newState.error.errorMessage).toEqual('Some error');
+    expect(newState.error.errorMessage).toEqual('Test error');
   });
 
   it('should REPORT and set value to be false after error.', () => {

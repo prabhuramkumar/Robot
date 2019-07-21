@@ -10,9 +10,9 @@ const initialState = {
 
 const faces = {
 	north: 'NORTH',
-	south: 'SOUTH',
 	east: 'EAST',
-	west: 'WEST',
+	south: 'SOUTH',
+	west: 'WEST'
 }
 
 const directions = {
