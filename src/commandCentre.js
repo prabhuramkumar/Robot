@@ -33,30 +33,18 @@ function checkInitalPlacement(positionValues){
 
 //Distribute command based on config
 function handleCommand(commandName, positionValues, boundActions){
-    switch (commandName) {
-	    case 'PLACE': 
-	    	 boundActions.place(positionValues);
-	    	 break;
-	    
-	    case 'LEFT':
-			 boundActions.rotate(commandName);
-			 break;
-		
-		case 'RIGHT': 
-			 boundActions.rotate(commandName);
-			 break;
-		
-		case 'MOVE':
-			 boundActions.move();
-			 break;
-		
-		case 'REPORT':
-			 boundActions.report();
-			 break;
-
-		default:
-			 boundActions.error('OOPS! Wrong command');
-			 break;
+	const commandActionSet = {
+		'PLACE': () => boundActions.place(positionValues),
+		'LEFT' : () => boundActions.rotate(commandName),
+		'RIGHT': () => boundActions.rotate(commandName),
+		'MOVE': () => boundActions.move(),
+		'REPORT': () => boundActions.report()
 	}
+	const selectedAction = commandActionSet[commandName];
+
+	if(!selectedAction)
+		boundActions.error('OOPS! Wrong command');
+
+	return selectedAction();
 }
 
