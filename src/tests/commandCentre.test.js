@@ -53,6 +53,16 @@ describe('Reducer - Valid scenrios testing', () => {
     expect(mockBoundActions.report).toHaveBeenCalled();
   });
 
+  it('should call ROTATE with valid direction command sent', () => {
+    decodeCommand('LEFT', mockBoundActions);
+    expect(mockBoundActions.rotate).toHaveBeenCalled();
+  });
+
+  it('should call ROTATE with valid direction command sent', () => {
+    decodeCommand('RIGHT', mockBoundActions);
+    expect(mockBoundActions.rotate).toHaveBeenCalled();
+  });
+
   it('should call ERROR with valid move command sent', () => {
     decodeCommand('RUN', mockBoundActions);
     expect(mockBoundActions.report).toHaveBeenCalled();

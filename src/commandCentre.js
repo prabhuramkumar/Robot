@@ -33,7 +33,6 @@ function checkInitalPlacement(positionValues){
 
 //Distribute command based on config
 function handleCommand(commandName, positionValues, boundActions){
-	
     switch (commandName) {
 	    case 'PLACE': 
 	    	 boundActions.place(positionValues);
