@@ -5,17 +5,21 @@ let placed;
 
 //Decode command based on config
 export default function decodeCommand(command, boundActions) {
-	const [commandName, x, y, facing] = command.toUpperCase().split(' ');
-	let positionValues = {x,y,facing};
+	try {
+		const [commandName, x, y, facing] = command.toUpperCase().split(' ');
+		let positionValues = {x,y,facing};
 
-	if(commandName === 'PLACE'){
-		placed = checkInitalPlacement(positionValues);
-	}
+		if(commandName === 'PLACE'){
+			placed = checkInitalPlacement(positionValues);
+		}
 
-	if(placed) {
-		handleCommand(commandName, positionValues, boundActions);
-		return true;
-	}else{
+		if(placed) {
+			handleCommand(commandName, positionValues, boundActions);
+			return true;
+		}else{
+			return false;
+		}
+	}catch(e) {
 		return false;
 	}
 }
