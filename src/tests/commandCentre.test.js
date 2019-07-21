@@ -13,6 +13,10 @@ describe('Reducer - Invalid scenrios testing', () => {
     expect(decodeCommand('', mockBoundActions)).toEqual(false);
   });
 
+  it('should return false when invalid command sent', () => {
+    expect(decodeCommand(undefined, mockBoundActions)).toEqual(false);
+  });
+
   it('should return false when first command is not PLACE', () => {
     expect(decodeCommand('MOVE', mockBoundActions)).toEqual(false);
   });

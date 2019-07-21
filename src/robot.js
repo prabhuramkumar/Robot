@@ -25,7 +25,7 @@ export function moveRobot(state) {
 
 // Rotate robot
 export function rotateRobot(state, direction) {
-	let newFacing = compass(direction, state.facing);
+	let newFacing = compass(state.facing, direction);
 	if(!newFacing) {
 		let newError = {errorOccured: true, errorMessage: "Oh! Wrong Direction"};
     	return Object.assign({}, state, {error: newError});

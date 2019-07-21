@@ -1,4 +1,3 @@
-import {place, rotate, move, report, error} from './actionCentre.js';
 import {tableSize} from './robotConfig';
 let placed;
 
@@ -34,6 +33,7 @@ function checkInitalPlacement(positionValues){
 
 //Distribute command based on config
 function handleCommand(commandName, positionValues, boundActions){
+	
     switch (commandName) {
 	    case 'PLACE': 
 	    	 boundActions.place(positionValues);
@@ -58,7 +58,6 @@ function handleCommand(commandName, positionValues, boundActions){
 		default:
 			 boundActions.error('OOPS! Wrong command');
 			 break;
-		
 	}
 }
 
